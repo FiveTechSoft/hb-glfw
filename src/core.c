@@ -1,12 +1,18 @@
 #include "hbglfw.h"
 
+/* Object destructor, it's executed automatically */
 static HB_GARBAGE_FUNC(hb_glfw_destructor)
 {
+   /* Retrieve object pointer holder */
    PHB_GLFW phb = Cargo;
 
+   /* Check if pointer is not NULL to avoid multiple freeing */
    if (phb && phb->p)
    {
+      /* Destroy the object */
       glfwDestroyWindow(phb->p);
+
+      /* set pointer to NULL to avoid multiple freeing */
       phb->p = NULL;
    }
 }

@@ -1,9 +1,7 @@
 description=hb-glfw bindings for Harbour
 
-prgflags=-w3 -es2
-
-incpaths=.
-headers=${hb_name}.ch
+incpaths=include
+headers=include/${hb_name}.ch
 
 libs=${_HB_DYNPREF}${hb_name}${_HB_DYNSUFF}
 

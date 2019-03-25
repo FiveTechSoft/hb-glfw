@@ -21,9 +21,10 @@
 -depimplibd=glfw:glfw
 -depfinish=glfw
 
+-iinclude
 -ideps
 
--hbx=${hb_name}.hbx
+-hbx=include/${hb_name}.hbx
 
 deps/glad.c
 src/*.c
