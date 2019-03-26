@@ -47,8 +47,8 @@ HB_FUNC(GLFWGETVERSION)
 /* GLFWAPI const char* glfwGetVersionString(void) */
 HB_FUNC(GLFWGETVERSIONSTRING)
 {
-   const char *str = glfwGetVersionString();
-   hb_retc(str);
+   const char *string = glfwGetVersionString();
+   hb_retc(string);
 }
 
 /* GLFWAPI int glfwGetError(const char** description) */

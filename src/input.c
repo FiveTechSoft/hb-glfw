@@ -48,8 +48,8 @@ HB_FUNC(GLFWGETKEYNAME)
    {
       int key = hb_parni(1);
       int scancode = hb_parni(2);
-      const char *str = glfwGetKeyName(key, scancode);
-      hb_retc(str);
+      const char *string = glfwGetKeyName(key, scancode);
+      hb_retc(string);
    }
    else
    {
@@ -205,6 +205,17 @@ HB_FUNC(GLFWSETDROPCALLBACK)
 /* GLFWAPI int glfwJoystickPresent(int jid) */
 HB_FUNC(GLFWJOYSTICKPRESENT)
 {
+   if (hb_param(1, HB_IT_INTEGER) != NULL)
+   {
+      int jid = hb_parni(1);
+      int result = glfwJoystickPresent(jid);
+      hb_retl(result);
+      
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR(EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS);
+   }
 }
 
 /* GLFWAPI const float* glfwGetJoystickAxes(int jid, int* count) */
@@ -225,11 +236,31 @@ HB_FUNC(GLFWGETJOYSTICKHATS)
 /* GLFWAPI const char* glfwGetJoystickName(int jid) */
 HB_FUNC(GLFWGETJOYSTICKNAME)
 {
+   if (hb_param(1, HB_IT_INTEGER) != NULL)
+   {
+      int jid = hb_parni(1);
+      const char *string = glfwGetJoystickName(jid);
+      hb_retc(string);
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR(EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS);
+   }
 }
 
 /* GLFWAPI const char* glfwGetJoystickGUID(int jid) */
 HB_FUNC(GLFWGETJOYSTICKGUID)
 {
+   if (hb_param(1, HB_IT_INTEGER) != NULL)
+   {
+      int jid = hb_parni(1);
+      const char *string = glfwGetJoystickGUID(jid);
+      hb_retc(string);
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR(EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS);
+   }
 }
 
 /* GLFWAPI void glfwSetJoystickUserPointer(int jid, void* pointer) */
@@ -265,6 +296,16 @@ HB_FUNC(GLFWUPDATEGAMEPADMAPPINGS)
 /* GLFWAPI int glfwJoystickIsGamepad(int jid) */
 HB_FUNC(GLFWJOYSTICKISGAMEPAD)
 {
+   if (hb_param(1, HB_IT_INTEGER) != NULL)
+   {
+      int jid = hb_parni(1);
+      int result = glfwJoystickIsGamepad(jid);
+      hb_retl(result);
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR(EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS);
+   }
 }
 
 /* GLFWAPI const char* glfwGetGamepadName(int jid) */
@@ -273,8 +314,8 @@ HB_FUNC(GLFWGETGAMEPADNAME)
    if (hb_param(1, HB_IT_INTEGER) != NULL)
    {
       int jid = hb_parni(1);
-      const char *str = glfwGetGamepadName(jid);
-      hb_retc(str);
+      const char *string = glfwGetGamepadName(jid);
+      hb_retc(string);
    }
    else
    {
@@ -310,8 +351,8 @@ HB_FUNC(GLFWGETCLIPBOARDSTRING)
 
    if (phb)
    {
-      const char *str = glfwGetClipboardString(phb->p);
-      hb_retc(str);
+      const char *string = glfwGetClipboardString(phb->p);
+      hb_retc(string);
    }
    else
    {
@@ -342,9 +383,13 @@ HB_FUNC(GLFWSETTIME)
 /* GLFWAPI uint64_t glfwGetTimerValue(void) */
 HB_FUNC(GLFWGETTIMERVALUE)
 {
+   HB_LONGLONG result = glfwGetTimerValue();
+   hb_retnll(result);
 }
 
 /* GLFWAPI uint64_t glfwGetTimerFrequency(void) */
 HB_FUNC(GLFWGETTIMERFREQUENCY)
 {
+   HB_LONGLONG result = glfwGetTimerFrequency();
+   hb_retnll(result);
 }
