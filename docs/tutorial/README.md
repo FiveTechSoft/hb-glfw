@@ -38,7 +38,7 @@ c:\>set PATH=c:\glfw\glfw-build\src\
 c:\>git clone --depth=10 https://github.com/rjopek/hb-glfw.git hbglfw
 c:\>cd hbglfw
 c:\hbglfw>hbmk2 hbglfw.hbp
-c:\hbglfw>cd test
+c:\hbglfw>cd tests
 c:\hbglfw\test>hbmk2 sharing.prg -run
 ```
 
