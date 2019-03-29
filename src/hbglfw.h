@@ -2,7 +2,7 @@
 #define HBGLFW_H_
 
 #include <glad/glad.h>
-#include <include/GLFW/glfw3.h>
+#include <GLFW/glfw3.h>
 
 #include "hbapi.h"
 #include "hbapierr.h"

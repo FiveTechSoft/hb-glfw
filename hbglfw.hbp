@@ -12,12 +12,12 @@
 -deppkgname=glfw:glfw-devel{rpm}
 -deppkgname=glfw:glfw-dev{deb}
 -deppkgname=glfw:glfw{homebrew}
--depkeyhead=glfw:include/GLFW/glfw3.h
+-depkeyhead=glfw:GLFW/glfw3.h
 -depcontrol=glfw:${HB_WITH_GLFW}
 -depincpath=glfw:/usr/include/glfw
 -depincpath=glfw:/usr/local/include/glfw
 -depincpath=glfw:/opt/local/include/glfw
--depimplibs=glfw:glfw-build/src/glfw3.dll
+-depimplibs=glfw:../glfw-build/src/glfw3.dll
 -depimplibd=glfw:glfw
 -depfinish=glfw
 

@@ -11,7 +11,7 @@ c:\>git clone --depth=10 https://github.com/glfw/glfw.git glfw
 c:\>cd glfw
 c:\glfw>mkdir glfw-build
 c:\glfw>cd glfw-build
-c:\glfw\glfw-build>cmake -G"NMake Makefiles" -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=glfw-build -DGLFW_BUILD_TEST=ON -DGLFW_BUILD_EXAMPLES=ON ..
+c:\glfw\glfw-build>cmake -G"NMake Makefiles" -DBUILD_SHARED_LIBS=ON -DGLFW_BUILD_TESTS=ON -DGLFW_BUILD_EXAMPLES=ON -DGLFW_BUILD_DOCS=ON ..
 c:\glfw\glfw-build>nmake
 c:\glfw\glfw-build>cd c:\
 ```
@@ -22,15 +22,15 @@ c:\>git clone --depth=10 https://github.com/glfw/glfw.git glfw
 c:\>cd glfw
 c:\glfw>mkdir glfw-build
 c:\glfw>cd glfw-build
-c:\glfw\glfw-build>cmake -G"MinGW Makefiles" -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=glfw-build -DGLFW_BUILD_TEST=ON -DGLFW_BUILD_EXAMPLES=ON ..
+c:\glfw\glfw-build>cmake -G"MinGW Makefiles" -DBUILD_SHARED_LIBS=ON -DGLFW_BUILD_TESTS=ON -DGLFW_BUILD_EXAMPLES=ON -DGLFW_BUILD_DOCS=ON ..
 c:\glfw\glfw-build>mingw32-make
 c:\glfw\glfw-build>cd c:\
 ```
 
 ### You can set these environment variables before starting the build
 ```
-c:\>set HB_WITH_GLFW=c:\glfw
-c:\>set PATH=c:\glfw\glfw-build\src\
+c:\>set HB_WITH_GLFW=c:\glfw\include
+c:\>set PATH=c:\glfw\glfw-build\src
 ```
 
 ### Compilation hb-glfw
@@ -39,7 +39,7 @@ c:\>git clone --depth=10 https://github.com/rjopek/hb-glfw.git hbglfw
 c:\>cd hbglfw
 c:\hbglfw>hbmk2 hbglfw.hbp
 c:\hbglfw>cd tests
-c:\hbglfw\test>hbmk2 sharing.prg -run
+c:\hbglfw\tests>hbmk2 sharing.prg -run
 ```
 
 ![Windows](http://harbour.pl/img/sharing.png "Windows 10 desktop")
