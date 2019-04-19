@@ -1,3 +1,10 @@
+/*
+The example was taken from the original file
+https://github.com/glfw/glfw/blob/master/tests/clipboard.c
+It is a copyrighted work provided under license.
+Modified by Rafał Jopek
+*/
+
 #include "hbglfw.ch"
 
 #if defined(__PLATFORM__DARWIN)
