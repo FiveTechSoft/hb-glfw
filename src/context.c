@@ -8,11 +8,6 @@ HB_FUNC(GLFWMAKECONTEXTCURRENT)
    if (phb)
    {
       glfwMakeContextCurrent(phb->p);
-
-      if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-      {
-         hb_conOutStd("\nFailed to initialize GLAD", 0);
-      }
    }
    else
    {

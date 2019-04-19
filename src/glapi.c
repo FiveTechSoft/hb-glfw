@@ -76,7 +76,7 @@ HB_FUNC(GLCLEARCOLOR)
 {
    if (HB_ISNUM(1) && HB_ISNUM(2) && HB_ISNUM(3) && HB_ISNUM(4))
    {
-      glClearColor( (float)hb_parnd(1), (float)hb_parnd(2), (float)hb_parnd(3), (float)hb_parnd(4));
+      glClearColor((float)hb_parnd(1), (float)hb_parnd(2), (float)hb_parnd(3), (float)hb_parnd(4));
    }
    else
    {

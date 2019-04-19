@@ -45,4 +45,4 @@ I am grateful to my friends who have somehow contributed to the creation of this
 “there is direction but there is no destination”  ( Carl R. Rogers )
 
 ## License
-[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](.github/LICENSE)
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](LICENSE)

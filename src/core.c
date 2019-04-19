@@ -12,6 +12,8 @@ static HB_GARBAGE_FUNC(hb_glfw_destructor)
       /* Destroy the object */
       glfwDestroyWindow(phb->p);
 
+      dynListDelete(phb->p);
+
       /* set pointer to NULL to avoid multiple freeing */
       phb->p = NULL;
    }

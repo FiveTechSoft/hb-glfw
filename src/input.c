@@ -1,4 +1,6 @@
 #include "hbglfw.h"
+#include "hbapiitm.h"
+#include "hbvm.h"
 
 /* GLFWAPI int glfwGetInputMode(GLFWwindow* handle, int mode) */
 HB_FUNC(GLFWGETINPUTMODE)
@@ -161,10 +163,55 @@ HB_FUNC(GLFWSETCURSOR)
 {
 }
 
+/* key callback */
+static void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods)
+{
+   PCALLBACK_ITEM pItem = dynListFind(window);
+
+   if (pItem != NULL)
+   {
+      if (hb_vmRequestReenter())
+      {
+         hb_vmPush(pItem->pCallback);
+         hb_vmPushNil();
+
+         hb_vmPushPointerGC(pItem->phb_glfw);
+         hb_vmPushInteger(key);
+         hb_vmPushInteger(scancode);
+         hb_vmPushInteger(action);
+         hb_vmPushInteger(mods);
+
+         hb_vmProc(5);
+      }
+   }
+}
+
 /* typedef void (* GLFWkeyfun)(GLFWwindow*,int,int,int,int); */
 /* GLFWAPI GLFWkeyfun glfwSetKeyCallback(GLFWwindow* handle, GLFWkeyfun cbfun) */
 HB_FUNC(GLFWSETKEYCALLBACK)
 {
+   PHB_GLFW phb = hbglfw_param(1, hbglfw_window);
+   PHB_ITEM pCallback = hb_param(2, HB_IT_SYMBOL);
+   PHB_SYMB pSymbol = NULL;
+
+   if (pCallback)
+   {
+      pSymbol = hb_itemGetSymbol(pCallback);
+      if (!pSymbol->value.pFunPtr)
+      {
+         pSymbol = NULL;
+      }
+   }
+
+   if (phb && pSymbol)
+   {
+      glfwSetKeyCallback(phb->p, key_callback);
+      dynListSet(phb, pCallback);
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR(EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS);
+   }
 }
 
 /* GLFWAPI GLFWcharfun glfwSetCharCallback(GLFWwindow* handle, GLFWcharfun cbfun) */
@@ -210,7 +257,6 @@ HB_FUNC(GLFWJOYSTICKPRESENT)
       int jid = hb_parni(1);
       int result = glfwJoystickPresent(jid);
       hb_retl(result);
-      
    }
    else
    {
@@ -333,10 +379,15 @@ HB_FUNC(GLFWSETCLIPBOARDSTRING)
 {
    PHB_GLFW phb = hbglfw_param(1, hbglfw_window);
 
-   if (phb && hb_param(2, HB_IT_STRING) != NULL)
+   if (hb_param(2, HB_IT_STRING) != NULL)
    {
+      GLFWwindow *window = NULL;
+      if (phb)
+      {
+         window = phb->p;
+      }
       const char *string = hb_parc(2);
-      glfwSetClipboardString(phb->p, string);
+      glfwSetClipboardString(window, string);
    }
    else
    {
@@ -348,16 +399,15 @@ HB_FUNC(GLFWSETCLIPBOARDSTRING)
 HB_FUNC(GLFWGETCLIPBOARDSTRING)
 {
    PHB_GLFW phb = hbglfw_param(1, hbglfw_window);
+   GLFWwindow *window = NULL;
 
    if (phb)
    {
-      const char *string = glfwGetClipboardString(phb->p);
-      hb_retc(string);
+      window = phb->p;
    }
-   else
-   {
-      hb_errRT_BASE_SubstR(EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS);
-   }
+
+   const char *string = glfwGetClipboardString(window);
+   hb_retc(string);
 }
 
 /* GLFWAPI double glfwGetTime(void) */

@@ -17,6 +17,7 @@
 -depincpath=glfw:/usr/include/glfw
 -depincpath=glfw:/usr/local/include/glfw
 -depincpath=glfw:/opt/local/include/glfw
+-depincpath=glfw:/usr/local/opt/glfw/include
 -depimplibs=glfw:../glfw-build/src/glfw3.dll
 -depimplibd=glfw:glfw
 -depfinish=glfw
@@ -26,7 +27,7 @@
 
 -hbx=include/${hb_name}.hbx
 
-deps/glad.c
+deps/glad_gl.c
 src/*.c
 src/*.prg
 
